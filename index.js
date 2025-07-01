@@ -20,16 +20,17 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/CHAT_APP');
 };
 
-let chat1= new Chat({
-    from: "Alice",
-    to: "Bob",
-    message: "Hello Bob!",
-    created_at: new Date(), //UTC date
-});
 
-chat1.save().then((res) => {
-    console.log(res)
-});
+//index route
+app.get("/chats", async (req,res)=>{
+    let chats = await Chat.find();
+    
+    res.render("index.ejs", {chats});
+
+
+})
+
+
 
 
 app.get("/", (req, res) => {
