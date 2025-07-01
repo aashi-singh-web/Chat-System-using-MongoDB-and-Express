@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHAT_APP</title>
+    <link rel="stylesheet" href="/style.css">
 
 </head>
 <body>
@@ -11,12 +12,12 @@
 
     <% for(let chat of chats) { %>
         <div class="chat">
-            <h4>From: <%= chat.name %></h4>
+            <h4>From:<i> <%= chat.from %></i></h4>
             <div class="message">
                 <p><strong>Message:</strong></p>
             <p><%= chat.message %></p>
             </div>
-            <p>Received by <%= chat.to%> </p>
+            <p>Received by <i><%= chat.to%></i> </p>
         <hr>
         </div>
     <%}%>
