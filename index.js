@@ -5,6 +5,7 @@ const path = require("path");
 app.use("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+const Chat= require("./models/chats.js");
 
 const mongoose = require('mongoose');
 
@@ -14,8 +15,10 @@ main().then(() => {
 .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
+  await mongoose.connect('mongodb://127.0.0.1:27017/CHAT_APP');
 }
+
+
 
 
 app.get("/", (req, res) => {
