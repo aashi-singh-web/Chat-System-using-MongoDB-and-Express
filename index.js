@@ -12,6 +12,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: true }));
 
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 
 main().then(() => {
   console.log("Connected to MongoDB");
@@ -61,6 +63,16 @@ app.get("/chats/:id/edit", async (req, res) => {
   res.render("edit.ejs", { chat });
 });
 
+app.put("/chats/:id", async (req, res) => {
+  let { id } = req.params;
+  let {message: newMsg} = req.body;
+  let UpdatedChat= await Chat.findByIdAndUpdate(
+    id,
+     {message: newMsg},
+    {runValidators: true, new: true}
+  );
+  res.redirect("/chats");
+});
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
