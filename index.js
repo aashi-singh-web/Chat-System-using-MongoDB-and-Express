@@ -27,11 +27,12 @@ app.get("/chats", async (req,res)=>{
     let chats = await Chat.find();
     
     res.render("index.ejs", {chats});
+});
 
-
-})
-
-
+//new route
+app.get("/chats/new", (req, res) => {
+  res.render("new.ejs");
+});
 
 
 app.get("/", (req, res) => {
